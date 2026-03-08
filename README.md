@@ -1,4 +1,4 @@
-# pw-poly-redeemer
+# pw-polymarket-reedeemer
 
 Automated Polymarket winnings claimer built with Playwright.
 
