@@ -4,9 +4,10 @@ import { config } from "./config.js";
 const PORTFOLIO_URL = `${config.polymarketUrl}/portfolio`;
 
 async function checkAndRedeem(page: import("playwright").Page): Promise<boolean> {
-  const claimButton = page.getByRole("button", { name: "Claim" }).first();
+  const claimButton = page.getByRole("button", { name: /^claim$/i }).first();
 
-  if (await claimButton.isVisible({ timeout: 10_000 }).catch(() => false)) {
+  const found = await claimButton.waitFor({ state: "visible", timeout: 10_000 }).then(() => true).catch(() => false);
+  if (found) {
     console.log("Claim button found! Clicking...");
     await claimButton.click();
 
@@ -64,7 +65,7 @@ async function main() {
       const timestamp = new Date().toLocaleTimeString();
       console.log(`[${timestamp}] Checking for claimable winnings...`);
 
-      await page.reload({ waitUntil: "networkidle" });
+      await page.reload({ waitUntil: "domcontentloaded" });
 
       const claimed = await checkAndRedeem(page);
       if (claimed) {
