@@ -1,0 +1,21 @@
+{
+  "name": "pw-poly-redeemer",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "login": "tsx src/login.ts",
+    "redeem": "tsx src/redeem.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "playwright": "^1.58.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
